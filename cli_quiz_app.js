@@ -60,7 +60,7 @@ function displayleaderboard()
 {
     let i=1;
     let leadersort=leaderboard.data.sort((a,b)=>b.score-a.score);
-    console.log("LEADERBOARD");
+    console.log(kuler("LEADERBOARD", "#facc15"));
     for(let person of leadersort)
     {
         console.log(`${i++}: ${person.name} - ${person.score} points`);
@@ -68,7 +68,8 @@ function displayleaderboard()
 }
 let userscore=0;
 const read=require("readline-sync");
-console.log("Welcome to CLI QUIZ APP");
+let kuler=require("kuler");
+console.log(kuler("Welcome to CLI QUIZ APP","#facc15"));
 let username=read.question("Please enter your name:");
 for(let i=0;i<3;i++)
 {
@@ -80,15 +81,15 @@ for(let i=0;i<3;i++)
     let input=read.question("Enter Answer:");
     if(input.toLowerCase()==database.data[i].answer)
     {
-        console.log("Answer is correct");
+        console.log(kuler("Answer is correct","#166534"));
         userscore++;
     }
     else
     {
-        console.log(`Answer is wrong, correct answer is ${database.data[i].answer}`);
+        console.log(kuler(`Answer is wrong, correct answer is ${database.data[i].answer}`,"#7f1d1d"));
     }
 }
-console.log(`Your total score: ${userscore}`);
+console.log(kuler(`Your total score: ${userscore}`,"#facc15"));
 leaderboard.data.push({name:username,score:userscore});
 let yn=read.question("Do you want to see the leaderboard? y/n").toLowerCase();
 if(yn=='y')
@@ -96,5 +97,5 @@ if(yn=='y')
     displayleaderboard();
 }
 else{
-    console.log("Thank you");
+    console.log(kuler("Thank you","#facc15"));
 }
