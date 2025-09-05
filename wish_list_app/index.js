@@ -18,14 +18,13 @@ function addwish()
     if(inputtext.value.trim()!="")
     {
         wishlist.push({id:generateid(), wish:inputtext.value, completed:false});
-        wishcontainer.innerHTML=wishlist.map(wishobj=>
-        `<div><input type="checkbox" id="item-${wishobj.id}">
-        <label for="item-${wishobj.id}">${wishobj.wish}</label>
-        <button> DELETE </button><div>`);
     }
-    
+    showlist();
 }
 function showlist()
 {
-    
+    wishcontainer.innerHTML=wishlist.map(wishobj=>
+        `<div><input type="checkbox" id="item-${wishobj.id}">
+        <label for="item-${wishobj.id}">${wishobj.wish}</label>
+        <button> DELETE </button><div>`).join("");
 }
