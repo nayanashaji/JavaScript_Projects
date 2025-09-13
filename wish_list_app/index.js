@@ -38,5 +38,5 @@ function showlist()
     wishcontainer.innerHTML=wishlist.map(wishobj=>
         `<div><input type="checkbox" id="item-${wishobj.id}" data-key=${wishobj.id} ${wishobj.completed? "checked":""}>
         <label for="item-${wishobj.id}" class="${wishobj.completed? "cutline" : ""}" data-key=${wishobj.id}>${wishobj.wish}</label>
-        <button data-delkey=${wishobj.id}> DELETE </button><div>`).join("");
+        <button><span data-delkey=${wishobj.id} class="material-symbols-outlined">delete</span> </button><div>`).join("");
 }
