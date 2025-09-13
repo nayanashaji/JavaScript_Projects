@@ -8,7 +8,9 @@ addbutton.addEventListener("click",addwish);
 wishcontainer.addEventListener("click",(e)=>
 {
 let key=e.target.dataset.key;
+let delkey=e.target.dataset.delkey;
 wishlist=wishlist.map(wishobj=> wishobj.id===key? {...wishobj,completed:!wishobj.completed}:wishobj);
+wishlist=wishlist.filter(wishobj=> wishobj.id!==delkey);
 showlist();
 console.log(wishlist);
 })
@@ -29,11 +31,12 @@ function addwish()
         wishlist.push({id:generateid(), wish:inputtext.value, completed:false});
     }
     showlist();
+    inputtext.value="";
 }
 function showlist()
 {
     wishcontainer.innerHTML=wishlist.map(wishobj=>
         `<div><input type="checkbox" id="item-${wishobj.id}" data-key=${wishobj.id} ${wishobj.completed? "checked":""}>
         <label for="item-${wishobj.id}" class="${wishobj.completed? "cutline" : ""}" data-key=${wishobj.id}>${wishobj.wish}</label>
-        <button> DELETE </button><div>`).join("");
+        <button data-delkey=${wishobj.id}> DELETE </button><div>`).join("");
 }
