@@ -4,6 +4,15 @@ let wishlist=[];
 let wishobj;
 let wishcontainer=document.querySelector(".wishcontainer");
 addbutton.addEventListener("click",addwish);
+
+wishcontainer.addEventListener("click",(e)=>
+{
+let key=e.target.dataset.key;
+wishlist=wishlist.map(wishobj=> wishobj.id===key? {...wishobj,completed:!wishobj.completed}:wishobj);
+showlist();
+console.log(wishlist);
+})
+
 function generateid()
 {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function (param)
@@ -24,7 +33,7 @@ function addwish()
 function showlist()
 {
     wishcontainer.innerHTML=wishlist.map(wishobj=>
-        `<div><input type="checkbox" id="item-${wishobj.id}">
-        <label for="item-${wishobj.id}">${wishobj.wish}</label>
+        `<div><input type="checkbox" id="item-${wishobj.id}" data-key=${wishobj.id} ${wishobj.completed? "checked":""}>
+        <label for="item-${wishobj.id}" class="${wishobj.completed? "cutline" : ""}" data-key=${wishobj.id}>${wishobj.wish}</label>
         <button> DELETE </button><div>`).join("");
 }
