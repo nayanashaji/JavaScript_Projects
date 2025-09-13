@@ -1,8 +1,11 @@
 let inputtext=document.getElementById("input");
 let addbutton=document.getElementById("add");
-let wishlist=[];
 let wishobj;
+let localdata= JSON.parse(localStorage.getItem("wishobj"));
+let wishlist=localdata || [];
+
 let wishcontainer=document.querySelector(".wishcontainer");
+
 addbutton.addEventListener("click",addwish);
 
 wishcontainer.addEventListener("click",(e)=>
@@ -12,7 +15,7 @@ let delkey=e.target.dataset.delkey;
 wishlist=wishlist.map(wishobj=> wishobj.id===key? {...wishobj,completed:!wishobj.completed}:wishobj);
 wishlist=wishlist.filter(wishobj=> wishobj.id!==delkey);
 showlist();
-console.log(wishlist);
+localStorage.setItem("wishobj",JSON.stringify(wishlist));
 })
 
 function generateid()
@@ -30,8 +33,10 @@ function addwish()
     {
         wishlist.push({id:generateid(), wish:inputtext.value, completed:false});
     }
+    localStorage.setItem("wishobj",JSON.stringify(wishlist));
     showlist();
     inputtext.value="";
+    
 }
 function showlist()
 {
@@ -40,3 +45,4 @@ function showlist()
         <label for="item-${wishobj.id}" class="${wishobj.completed? "cutline" : ""}" data-key=${wishobj.id}>${wishobj.wish}</label>
         <button><span data-delkey=${wishobj.id} class="material-symbols-outlined">delete</span> </button><div>`).join("");
 }
+showlist();
