@@ -1,5 +1,6 @@
 let form=document.getElementById("form");
 let firstname, lastname, email, password;
+let fntarget,lntarget,emailtarget,pwdtarget;
 let createbutton=document.getElementById("createbutton");
 let errors=document.querySelectorAll(".error");
 let emptyfields=document.querySelectorAll(".empty");
@@ -25,15 +26,19 @@ form.addEventListener("keyup", (event)=>
     {
         case "firstname":
             firstname=event.target.value;
+            fntarget=event.target;
             break;
         case "lastname":
             lastname=event.target.value;
+            lntarget=event.target;
             break;
         case "email":
             email=event.target.value;
+            emailtarget=event.target;
             break;
         case "password":
             password=event.target.value;
+            pwdtarget=event.target;
             break;
         default:
             firstname=lastname=email=password="";
@@ -49,9 +54,11 @@ createbutton.addEventListener("click",(event)=>
         if(!nameRegex.test(firstname))
         {
             errors[0].classList.remove("hide");
+            fntarget.classList.add("errorhighlight");
         }
         else{
             errors[0].classList.add("hide");
+            fntarget.classList.remove("errorhighlight");
         }
     }
     else{
@@ -64,9 +71,11 @@ createbutton.addEventListener("click",(event)=>
         if(!nameRegex.test(lastname))
         {
             errors[1].classList.remove("hide");
+            lntarget.classList.add("errorhighlight");
         }
         else{
             errors[1].classList.add("hide");
+            lntarget.classList.remove("errorhighlight");
         }
     }
     else{
@@ -79,9 +88,11 @@ createbutton.addEventListener("click",(event)=>
         if(!emailRegex.test(email))
         {
             errors[2].classList.remove("hide");
+            emailtarget.classList.add("errorhighlight");
         }
         else{
             errors[2].classList.add("hide");
+            emailtarget.classList.remove("errorhighlight");
         }
     }
     else{
@@ -94,10 +105,12 @@ createbutton.addEventListener("click",(event)=>
         if(!passwordRegex.test(password))
         {
             errors[3].classList.remove("hide");
+            pwdtarget.classList.add("errorhighlight");
         }
         else
         {
             errors[3].classList.add("hide");
+            pwdtarget.classList.remove("errorhighlight");
         }
     }
     else{
