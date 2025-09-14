@@ -4,6 +4,7 @@ let fntarget,lntarget,emailtarget,pwdtarget;
 let createbutton=document.getElementById("createbutton");
 let errors=document.querySelectorAll(".error");
 let emptyfields=document.querySelectorAll(".empty");
+let showpass=document.querySelector(".button");
 
 let nameRegex = /^[a-z]+$/i;
 let emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -117,4 +118,13 @@ createbutton.addEventListener("click",(event)=>
         emptyfields[3].classList.remove("hide");
         errors[3].classList.add("hide");
     }
+})
+
+showpass.addEventListener("click",(event)=>
+{
+    event.preventDefault();
+    if(pwdtarget.getAttribute("type")==="text")
+        pwdtarget.setAttribute("type","password");
+    else
+        pwdtarget.setAttribute("type","text");
 })

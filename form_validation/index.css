@@ -12,3 +12,35 @@ body
 {
     border: 2px solid red;
 }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+.container
+{
+    position: relative;
+    padding:2px;
+    width: 200px;
+}
+.input
+{
+    width: 100%;
+}
+.input:focus {
+  outline: none;
+}
+.button
+{
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    border: none;
+    color: black;
+    background: transparent;
+    cursor: pointer;
+    
+}
