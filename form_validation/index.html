@@ -34,12 +34,12 @@
             <input type="password" id="password" placeholder="Password" data-key="password">
             </label>
             <span class="empty">Please fill this field</span>
-            <ul>
-                <li data-error="passlength" class="error">Password should have at least 8 characters</li>
-                <li data-error="passlowercase" class="error">Password should have at least one lowercase letter</li>
-                <li data-error="passuppercase" class="error">Password should have at least one uppercase letter</li>
-                <li data-error="passnumber" class="error">Password should have at least one number</li>
-                <li data-error="passspecial" class="error">Password should have at least one special character</li>
+            <ul data-error="password-error" class="error">
+                <li>Password should have at least 8 characters</li>
+                <li>Password should have at least one lowercase letter</li>
+                <li>Password should have at least one uppercase letter</li>
+                <li>Password should have at least one number</li>
+                <li>Password should have at least one special character</li>
             </ul>
         </div>
         <button type="button" id="createbutton">Create Account</button>
