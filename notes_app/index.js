@@ -28,5 +28,10 @@ displaynotes.addEventListener("click",(e)=>
             notesarr=notesarr.filter(({id})=>id.toString()!==noteid);
             othernotes.innerHTML=rendernotes(notesarr);
             break;
+        case "pin":
+            notesarr=notesarr.map(note=>note.id.toString()===noteid?{...note,pin:!note.pin}:note);
+            pinnednotes.innerHTML=rendernotes(notesarr.filter(({pin})=>pin));
+            othernotes.innerHTML=rendernotes(notesarr.filter(({pin})=>!pin));
+            break;
     }
 })
