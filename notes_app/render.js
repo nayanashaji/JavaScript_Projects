@@ -6,12 +6,12 @@ export const rendernotes=(notes)=>
             `<div>
                 <div>
                     <h4> ${title} </h4>
-                    <button data-id=${id}>Delete</button>
+                    <button data-type="delete" data-id=${id}>Delete</button>
                 </div>
                 <div>
                     <p>${note}</p>
-                    <button data-id=${id}>pin</button>
-                    <button data-id=${id}>archive</button>
+                    <button data-type="pin" data-id=${id}>pin</button>
+                    <button fata-type="archive" data-id=${id}>archive</button>
                 </div>
             </div>`
         )
