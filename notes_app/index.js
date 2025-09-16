@@ -10,7 +10,7 @@ let notesarr=[];
 
 add.addEventListener("click",(e)=>
 {
-    if(title.value.trim!="" || note.value.trim!="")
+    if(title.value.trim()!='' || note.value.trim()!='')
     {
         notesarr=[...notesarr,{id:Date.now(), title: title.value.trim(), note:note.value.trim(), pin:false, archive:false}]
         othernotes.innerHTML=rendernotes(notesarr);

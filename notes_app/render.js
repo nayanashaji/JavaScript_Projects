@@ -6,12 +6,16 @@ export const rendernotes=(notes)=>
             `<div>
                 <div>
                     <h4> ${title} </h4>
-                    <button data-type="delete" data-id=${id}>Delete</button>
+                    <button><span class="material-symbols-outlined" data-type="delete" data-id=${id}>delete</span></button>
                 </div>
                 <div>
                     <p>${note}</p>
-                    <button data-type="pin" data-id=${id}>pin</button>
-                    <button fata-type="archive" data-id=${id}>archive</button>
+                    <button>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${pin ? 1 : 0}"  data-type="pin" data-id=${id}>keep</span>
+                    </button>
+                    <button>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' ${archive?1:0}" data-type="archive" data-id=${id}>archive</span>
+                    </button>
                 </div>
             </div>`
         )
