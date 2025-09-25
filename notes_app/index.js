@@ -6,7 +6,7 @@ let add=document.getElementById("add");
 let othernotes=document.getElementById("othernote");
 let pinnednotes=document.getElementById("pinnote");
 let displaynotes=document.getElementById("displaynotes");
-let notesarr=[];
+let notesarr=JSON.parse(localStorage.getItem("notes"))||[];
 
 add.addEventListener("click",(e)=>
 {
@@ -15,6 +15,7 @@ add.addEventListener("click",(e)=>
         notesarr=[...notesarr,{id:Date.now(), title: title.value.trim(), note:note.value.trim(), pin:false, archive:false}]
         othernotes.innerHTML=rendernotes(notesarr);
         note.value=title.value="";
+        localStorage.setItem("notes",JSON.stringify(notesarr));
     }
 });
 
@@ -27,11 +28,21 @@ displaynotes.addEventListener("click",(e)=>
         case "delete":
             notesarr=notesarr.filter(({id})=>id.toString()!==noteid);
             othernotes.innerHTML=rendernotes(notesarr);
+            localStorage.setItem("notes",JSON.stringify(notesarr));
             break;
         case "pin":
             notesarr=notesarr.map(note=>note.id.toString()===noteid?{...note,pin:!note.pin}:note);
-            pinnednotes.innerHTML=rendernotes(notesarr.filter(({pin})=>pin));
-            othernotes.innerHTML=rendernotes(notesarr.filter(({pin})=>!pin));
+            pinnednotes.innerHTML=rendernotes(notesarr.filter(({pin,archive})=>pin && !archive));
+            othernotes.innerHTML=rendernotes(notesarr.filter(({pin,archive})=>!pin && !archive));
+            localStorage.setItem("notes",JSON.stringify(notesarr));
             break;
+        case "archive":
+            notesarr=notesarr.map(note=>note.id.toString()===noteid?{...note,archive:!note.archive, pin:!note.pin}:note);
+            pinnednotes.innerHTML=rendernotes(notesarr.filter(({pin,archive})=>pin && !archive));
+            othernotes.innerHTML=rendernotes(notesarr.filter(({archive})=>!archive));
+            localStorage.setItem("notes",JSON.stringify(notesarr));
     }
-})
+});
+
+pinnednotes.innerHTML=rendernotes(notesarr.filter(({pin,archive})=>pin && !archive));
+othernotes.innerHTML=rendernotes(notesarr.filter(({pin,archive})=>!pin && !archive));
