@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Ecom</title>
-    <meta name="Author" description="Nayana">
+    <title>Cart | Ecom</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -30,7 +29,7 @@
                     </a>
                 </li>
                 <li class="list-item-inline">
-                    <a href="cart.html" class="link cursor">
+                    <a href="./cart.html" class="link cursor">
                         <span class="nav-icon material-icons-outlined">
                             shopping_cart
                             </span>
@@ -39,9 +38,11 @@
             </ul>
         </nav>
     </header>
-    <div class="products-page d-flex">
-        <div class="ct-container d-flex wrap gap" id="products"></div>
-    </div>
-    <script type="module" src="index.js"></script>
+    <main class="main">
+        <h2 class="heading-2 d-flex justify-center">Your Cart</h2>
+        <main class="d-flex gap justify-center">
+            <div class=" d-flex direction-column wrap gap" id="cart"></div>
+    </main>
+    <script type="module" src="cart.js"></script>
 </body>
 </html>

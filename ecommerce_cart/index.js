@@ -2,6 +2,7 @@ import {products} from "./product.js";
 
 const productContainer=document.getElementById("products");
 
+
 for(let product of products){
     const cardContainer=document.createElement("div");
     cardContainer.classList.add(
@@ -76,6 +77,7 @@ for(let product of products){
         "gap",
         "cursor",
         "btn-margin");
+    cartButton.setAttribute("data-id", product._id);
     const cart=document.createElement("span");
     cart.classList.add("material-icons-outlined");
     cart.innerText="shopping_cart";
@@ -92,3 +94,23 @@ for(let product of products){
     cardContainer.appendChild(cardDetailsContainer);
     productContainer.appendChild(cardContainer);
 }
+
+let cart=[];
+const findProductInCart=(cart,prodId)=>{
+    const isProductInCart=cart && cart.length > 0 && cart.some(({_id})=>_id === prodId);
+    return isProductInCart;
+};
+
+productContainer.addEventListener("click",(e)=>{
+    const isProductInCart=findProductInCart(cart,e.target.dataset.id);
+    if(!isProductInCart){
+        const productToAddToCart=products.filter(({_id})=> _id === e.target.dataset.id);
+        cart=[...cart, ...productToAddToCart];
+        console.log(cart);
+        const cartButton=e.target;
+        cartButton.innerHTML="Go to Cart <span class='material-icons-outlined'>shopping_cart</span>";
+    }
+    else{
+        location.href="cart.html";
+    }
+});
