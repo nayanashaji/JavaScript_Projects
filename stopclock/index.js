@@ -11,12 +11,12 @@ function buttonClick(e)
     {
         timerid=setInterval(()=>{
             sec++
-            if(sec>=59)
+            if(sec>59)
             {
                 sec=0;
                 min++;
             }
-            else if(min>=59)
+            else if(min>59)
             {
                 min=0;
                 hour++;
