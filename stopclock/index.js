@@ -15,6 +15,11 @@ function buttonClick(e)
                 sec=0;
                 min++;
             }
+            else if(min>=59)
+            {
+                min=0;
+                hour++;
+            }
             clockContainer.innerText=`${hour<10?`0${hour}`:hour}:${min<10?`0${min}`:min}:${sec<10?`0${sec}`:sec}`
         },100);
     }
