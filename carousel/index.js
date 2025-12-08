@@ -22,3 +22,17 @@ nextButton.addEventListener("click",()=>{
     (image.style.transform=`translateX(${(index-currentslide)*100}%)`)
 );
 })
+
+prevButton.addEventListener("click",()=>{
+    if(currentslide===0)
+    {
+        currentslide=maxslide;
+    }
+    else
+    {
+        currentslide--;
+    }
+    carousel.forEach((image,index) => 
+    (image.style.transform=`translateX(${(index-currentslide)*100}%)`)
+);
+})
