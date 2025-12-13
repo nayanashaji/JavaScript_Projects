@@ -1,5 +1,9 @@
 let main=document.querySelector(".main");
 let search=document.querySelector(".input");
+let ratings=document.querySelector(".rating-select");
+
+let searchValue="";
+let ratingValue=0;
 
 const URL = "https://movies-api-63ol.onrender.com/movies";
 
@@ -67,11 +71,24 @@ function createCard(movies){
     }
 }
 
+function filterMovies(){
+    let filteredMovies=searchValue?.length>0?movies.filter((movie)=>movie.title.toLowerCase().includes (searchValue)||movie.director.toLowerCase().includes(searchValue)||movie.actors.join(",").toLowerCase().includes(searchValue)):movies;
+
+    if(ratingValue>0)
+    {
+        filteredMovies=filteredMovies.filter((movie)=>{
+            return movie.rating>=ratingValue;
+        });
+    }
+
+    return filteredMovies;
+}
+
 function searchHandler(e){
-    let searchValue=e.target.value.toLowerCase();
-    let filteredMovies=searchValue?.length>0?movies.filter((movie)=>movie.title.toLowerCase().startsWith(searchValue)||movie.director.toLowerCase().startsWith(searchValue)||movie.actors.join(",").toLowerCase().includes(searchValue)):movies;
+    searchValue=e.target.value.toLowerCase();
+    let filteredSearchMovies=filterMovies();
     main.innerHTML="";
-    createCard(filteredMovies);
+    createCard(filteredSearchMovies);
 }
 
 function debounce(callback,delay){
@@ -84,6 +101,15 @@ function debounce(callback,delay){
     };
 }
 
+function ratingHandler(e){
+    ratingValue=e.target.value;
+    let filteredRatingMovies=filterMovies();
+    main.innerHTML="";
+    createCard(filteredRatingMovies);
+}
+
 search.addEventListener("keyup",debounce(searchHandler,500));
+
+ratings.addEventListener("change",ratingHandler);
 
 createCard(movies);
