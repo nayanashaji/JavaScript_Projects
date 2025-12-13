@@ -1,6 +1,7 @@
 let main=document.querySelector(".main");
 let search=document.querySelector(".input");
-let ratings=document.querySelector(".rating-select");
+let ratings=document.querySelector("#rating-select");
+let genres=document.querySelector("#genre-select");
 
 let searchValue="";
 let ratingValue=0;
@@ -108,8 +109,26 @@ function ratingHandler(e){
     createCard(filteredRatingMovies);
 }
 
+function collectGenres(){
+    let genresArray=movies.reduce((acc,cur)=>{
+        let totalGenres=[];
+        let singleGenre=cur.genres;
+        acc=[...acc,...singleGenre];
+        for(let oneGenre of acc){
+            if(!totalGenres.includes(oneGenre)){
+                totalGenres=[...totalGenres,oneGenre];
+            }
+        }
+        console.log(totalGenres);
+        return totalGenres;
+    },[]);
+
+}
+
 search.addEventListener("keyup",debounce(searchHandler,500));
 
 ratings.addEventListener("change",ratingHandler);
+
+collectGenres()
 
 createCard(movies);
