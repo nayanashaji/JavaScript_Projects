@@ -67,11 +67,13 @@ function createCard(movies){
     }
 }
 
-//function searchHandler(e){
- //   let searchValue=e.target.value.toLowerCase();
-  //  let filteredMovies=searchValue?.length>0?movies.filter((movie)=>movie.title.toLowerCase()===searchValue||movie.toLowerCase()===searchValue||movie.title.toLowerCase()===searchValue)
-//}
+function searchHandler(e){
+    let searchValue=e.target.value.toLowerCase();
+    let filteredMovies=searchValue?.length>0?movies.filter((movie)=>movie.title.toLowerCase().startsWith(searchValue)||movie.director.toLowerCase().startsWith(searchValue)||movie.actors.join(",").toLowerCase().split(",").includes(searchValue)):movies;
+    main.innerHTML="";
+    createCard(filteredMovies);
+}
 
-//search.addEventListener("keyup",searchHandler);
+search.addEventListener("keyup",searchHandler);
 
 createCard(movies);
