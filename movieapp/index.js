@@ -74,6 +74,16 @@ function searchHandler(e){
     createCard(filteredMovies);
 }
 
-search.addEventListener("keyup",searchHandler);
+function debounce(callback,delay){
+    let timerid;
+    return (...args)=>{
+        clearTimeout(timerid);
+        timerid=setTimeout(()=>{
+            callback(...args)
+        },delay);
+    };
+}
+
+search.addEventListener("keyup",debounce(searchHandler,500));
 
 createCard(movies);
