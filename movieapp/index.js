@@ -1,11 +1,12 @@
 let main=document.querySelector(".main");
+let search=document.querySelector(".input");
 
-const URL = "https://api.tvmaze.com/shows";
+const URL = "https://movies-api-63ol.onrender.com/movies";
 
 const getMovies=async (url)=>{
     try{
         const {data}=await axios.get(url);
-        return data;
+        return data.results;
     }
     catch(error){}
 };
@@ -24,7 +25,7 @@ function createCard(movies){
 
         let img=document.createElement("img");
         img.classList.add("card-image");
-        img.setAttribute("src",movie.image.medium);
+        img.setAttribute("src",movie.poster);
         imageContainer.appendChild(img);
 
         let moviedetailsContainer=document.createElement("div");
@@ -32,7 +33,7 @@ function createCard(movies){
 
         let title=document.createElement("p");
         title.classList.add("title");
-        title.innerText=movie.name;
+        title.innerText=movie.title;
 
         let genre=document.createElement("p");
         genre.classList.add("genre");
@@ -50,7 +51,7 @@ function createCard(movies){
         starRatingContainer.appendChild(starIcon);
 
         let rating=document.createElement("span");
-        rating.innerText=movie.rating.average;
+        rating.innerText=movie.rating;
         starRatingContainer.appendChild(rating);
 
         ratingContainer.appendChild(starRatingContainer);
@@ -65,5 +66,12 @@ function createCard(movies){
         main.appendChild(cardContainer);
     }
 }
+
+//function searchHandler(e){
+ //   let searchValue=e.target.value.toLowerCase();
+  //  let filteredMovies=searchValue?.length>0?movies.filter((movie)=>movie.title.toLowerCase()===searchValue||movie.toLowerCase()===searchValue||movie.title.toLowerCase()===searchValue)
+//}
+
+//search.addEventListener("keyup",searchHandler);
 
 createCard(movies);
