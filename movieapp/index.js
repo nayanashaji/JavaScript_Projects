@@ -5,6 +5,7 @@ let genres=document.querySelector("#genre-select");
 
 let searchValue="";
 let ratingValue=0;
+let genreValue="";
 
 const URL = "https://movies-api-63ol.onrender.com/movies";
 
@@ -82,6 +83,13 @@ function filterMovies(){
         });
     }
 
+    if(genreValue)
+    {
+        filteredMovies=filteredMovies.filter((movie)=>{
+            return movie.genres.includes(genreValue);
+        });
+    }
+
     return filteredMovies;
 }
 
@@ -122,13 +130,28 @@ function collectGenres(){
         console.log(totalGenres);
         return totalGenres;
     },[]);
+    for(let oneGenre of genresArray){
+        let option=document.createElement("option");
+        option.setAttribute("value",oneGenre);
+        option.classList.add("option");
+        option.innerHTML=oneGenre;
+        genres.appendChild(option);
+    }
+}
 
+function genreHandler(e){
+    genreValue=e.target.value;
+    let filteredGenreMovies=filterMovies();
+    main.innerHTML="";
+    createCard(filteredGenreMovies);
 }
 
 search.addEventListener("keyup",debounce(searchHandler,500));
 
 ratings.addEventListener("change",ratingHandler);
 
-collectGenres()
+collectGenres();
+
+genres.addEventListener("change",genreHandler);
 
 createCard(movies);
