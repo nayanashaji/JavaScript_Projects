@@ -37,13 +37,27 @@ function createCard(movies){
         let moviedetailsContainer=document.createElement("div");
         moviedetailsContainer.classList.add("movie-details");
 
+        let titleContainer=document.createElement("div");
+        titleContainer.classList.add("title-container");
+
         let title=document.createElement("p");
         title.classList.add("title");
         title.innerText=movie.title;
 
+        let year=document.createElement("p");
+        year.classList.add("year");
+        year.innerText=movie.year;
+
+        titleContainer.appendChild(title);
+        titleContainer.appendChild(year);
+
         let genre=document.createElement("p");
         genre.classList.add("genre");
         genre.innerText=movie.genres;
+
+        let director=document.createElement("p");
+        director.classList.add("director");
+        director.innerText=`Directed By: ${movie.director}`;
 
         let ratingContainer=document.createElement("div");
         ratingContainer.classList.add("ratings");
@@ -62,8 +76,9 @@ function createCard(movies){
 
         ratingContainer.appendChild(starRatingContainer);
 
-        moviedetailsContainer.appendChild(title);
+        moviedetailsContainer.appendChild(titleContainer);
         moviedetailsContainer.appendChild(genre);
+        moviedetailsContainer.appendChild(director);
         moviedetailsContainer.appendChild(ratingContainer);
 
         cardContainer.appendChild(imageContainer);

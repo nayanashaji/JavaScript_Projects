@@ -29,6 +29,12 @@ body {
   background-color: var(--bg-color);
 }
 
+.title-container{
+  display: flex;
+  gap: 15px;
+  margin: 10px 0;
+}
+
 .heading-1 {
   font-size: 3rem;
   color: var(--text-color-primary);
@@ -75,6 +81,7 @@ body {
   width: 18rem;
   border-radius: 4px;
   background-color: var(--card-bg);
+  padding: 15px 15px 0 15px;
 }
 
 .card:hover {
@@ -107,7 +114,16 @@ body {
   font-size: 1.1rem;
 }
 
+.year{
+  font-size: 1.1rem;
+  margin-left: auto;
+}
+
 .genre {
+  font-size: 0.875rem;
+}
+
+.director{
   font-size: 0.875rem;
 }
 
